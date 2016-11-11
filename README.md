@@ -19,5 +19,4 @@ References include:
 - Preparing a live search AJAX app
 - Sending JSON data to the page
 - Searching JSON data
-- Styling an application
-- Adding CSS3 animations
+
