@@ -252,18 +252,91 @@ $('.update:even').load('data.txt');
 
 
 
+/******************************************************************************************/
+
+
+/*Reading data with JQuery */
+
+$.getJSON('data.json', function(data) { /*pass along the data we get from this getjson function
+in order to get data.json file */
+	var 
+	output = '<ul>'; /*variable created called output (not an actual method)  */
+		/*instead of using js foor loop, use jquery's each statement */
+		$.each(data, function(key, val) { /*Pass along data, then function literal. Function literal will
+			have a couple of variables, key and val. Similar to using js for in statement.*/
+	output += '<li>' + val.name + '</li>'; /*output list item, output a variable and pass
+		along name, close list item. name comes from the list of objects and the name of value
+		pairs. */
+	});
+	output +='</ul>';
+	$('#update').prepend(output); /*to update html, use html jquery method prepend to add the 
+	data from the json file. Or append to add it after the h1 tag called Speakers.*/
+});
 
 
 
+/*******************************************************************************************/
 
 
+/*Read the json data and output it into our div */
+
+/*This will read the json file and then as a callback, will run an anonymus function
+to pass along the data that we have. */
 
 
+$.getJSON('data.json', function(data) {
+
+//First test to make sure the data is being sent. 
+//console.log(data);
 
 
+	var output = '<ul class="searchresults">'; //create variable output, feed unordered list with class
+	$.each(data, function(key, val) { // use each statement to output list items, function literal
+		//meaning doesn't have an actual function name.
+		output += '<li>'; //output elements on there own line
+		output += '<h2>'+ val.name +'</h2>'; // output the name from the value variable that gets
+		//created from .each statement, .name on json file.
+		output += '<img src="images/'+ val.shortname +'_tn.jpg" alt="'+ val.name +'" />';
+		//outputs image targeting image folder, targeting value of shortname on json file, 
+		//then get image with path _tn.jpg and alt of value of name with .name value on json file.
+		output += '<p>'+ val.bio +'</p>'; // get bio text targeting bio value on json file
+		output += '</li>';
+	});
+	output += '</ul>'; //closes out variable created
+	$('#update').html(output); //output html into #update div
+
+}); //get JSON
 
 
+/*******************************************************************************************/
 
 
+/*Searching JSON data */
 
-
+$('#search').keyup(function() { //target input field with id of search, use .keyup jquery event
+	// to target keys being clicked, then function literal
+	var searchField = $('#search').val(); // get the text the user is typing, target div with
+	//id of search and getting the value that is in that field.
+	var myExp = new RegExp(searchField, "i"); // create new variable myExp, create new RegExp 
+	// which RegExp Regular expressions are used to perform pattern-matching and
+	//0 "search-and-replace" functions on text. Takes searchField, type i in quotes for case
+	//insensitive search.
+	$.getJSON('data.json', function(data) { // get json data file 
+		var output = '<ul class="searchresults">';
+		$.each(data, function(key, val) {
+			if ((val.name.search(myExp) != -1) || // wrap around list of output items, if value 
+				//of name from data file, then execute a search, passing it a regular expression
+				//the one created called myExp, and if not equal -1, means it did find text in data
+			(val.bio.search(myExp) != -1)) { // also search bio field which || means or search bio also
+				//says look for regular expression in name or in the bio field.
+				output += '<li>';
+				output += '<h2>'+ val.name +'</h2>';
+				output += '<img src="images/'+ val.shortname +'_tn.jpg" alt="'+ val.name +'" />';
+				output += '<p>'+ val.bio +'</p>';
+				output += '</li>';
+			}
+		}); // if find text in data, output everything above
+		output += '</ul>';
+		$('#update').html(output);//output the html in the div id of update
+	}); //get JSON
+});
