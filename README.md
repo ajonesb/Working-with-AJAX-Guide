@@ -1,7 +1,7 @@
 
 References for using AJAX with Javascript Front End Development from the Lynda series javascript and Ajax:https://www.lynda.com/Developer-tutorials/JavaScript-and-AJAX/114900-2.html
 
-It is only the Javascript examples not the index files associated with the tutorials but serves as a good reference to have when developing on the Front End with javascript and AJAX.
+The index file is attached as well and the data.txt file and accompanying JSON file to use to extract data. 
 
 References include:
 
