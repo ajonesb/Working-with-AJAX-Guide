@@ -1,7 +1,7 @@
 
 References for using AJAX with Javascript Front End Development from the Lynda series javascript and Ajax:https://www.lynda.com/Developer-tutorials/JavaScript-and-AJAX/114900-2.html
 
-The index files and other files associated are not attached but serves as a good reference regardless to use when working with ajav and javascript. 
+The index files and other files associated are not attached but serves as a good reference regardless to use when working with AJAX and javascript. 
 
 References include:
 
